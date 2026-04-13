@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float speed = 7f;
+    
     private Rigidbody2D rb;
     private Vector2 input;
-
 
     void Start()
     {
@@ -27,5 +28,14 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = input * speed;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        TargetInteractable interactable = other.GetComponent<TargetInteractable>();
+        if (interactable != null)
+        {
+            interactable.Trigger();
+        }
     }
 }
