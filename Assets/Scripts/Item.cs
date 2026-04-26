@@ -9,8 +9,12 @@ public class Item : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Inventory.instance.AddItem(this);
-            GetComponent<TargetInteractable>().Trigger(); // hooks into your existing system
+            PlayerInventory.instance.AddItem(this);
+
+            InventoryUI ui = FindObjectOfType<InventoryUI>();
+            if (ui != null) ui.RefreshUI();
+
+            GetComponent<TargetInteractable>().Trigger();
         }
     }
 }

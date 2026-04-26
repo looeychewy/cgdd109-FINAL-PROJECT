@@ -16,6 +16,8 @@ public class CraftingUI : MonoBehaviour
     [SerializeField] Sprite keySprite;
     [SerializeField] TextMeshProUGUI craftButtonText;
 
+    [SerializeField] GameObject dimOverlay;
+
     bool[] slotFilled;
 
     void OnEnable()
@@ -32,9 +34,9 @@ public class CraftingUI : MonoBehaviour
         {
             if (i >= ingredientSlots.Length) break;
 
-            if (Inventory.instance.HasItem(requiredItems[i]))
+            if (PlayerInventory.instance.HasItem(requiredItems[i]))
             {
-                Item item = Inventory.instance.items.Find(x => x.itemName == requiredItems[i]);
+                Item item = PlayerInventory.instance.items.Find(x => x.itemName == requiredItems[i]);
                 ingredientSlots[i].sprite = item.icon;
                 ingredientSlots[i].color = Color.white;
                 slotFilled[i] = true;
@@ -67,14 +69,14 @@ public class CraftingUI : MonoBehaviour
 
         // Consume items
         foreach (string itemName in requiredItems)
-            Inventory.instance.RemoveItem(itemName);
+            PlayerInventory.instance.RemoveItem(itemName);
 
         // Show key in output slot
         outputSlot.sprite = keySprite;
         outputSlot.color = Color.white;
 
-        // Add key to inventory
-        Debug.Log("Key crafted! Add key to inventory or trigger door unlock here.");
+        // Add key to PlayerInventory
+        Debug.Log("Key crafted! Add key to PlayerInventory or trigger door unlock here.");
 
         // Clear slots
         slotFilled = new bool[ingredientSlots.Length];
@@ -84,5 +86,6 @@ public class CraftingUI : MonoBehaviour
     public void OnClosePressed()
     {
         gameObject.SetActive(false);
+        dimOverlay.SetActive(false);
     }
 }

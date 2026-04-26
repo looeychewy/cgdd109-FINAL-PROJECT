@@ -30,12 +30,4 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = input * speed;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        TargetInteractable interactable = other.GetComponent<TargetInteractable>();
-        if (interactable != null)
-        {
-            interactable.Trigger();
-        }
-    }
 }
