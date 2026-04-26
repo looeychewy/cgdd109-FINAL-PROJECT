@@ -10,7 +10,7 @@ public class Item : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Inventory.instance.AddItem(this);
-            gameObject.SetActive(false);
+            GetComponent<TargetInteractable>().Trigger(); // hooks into your existing system
         }
     }
 }

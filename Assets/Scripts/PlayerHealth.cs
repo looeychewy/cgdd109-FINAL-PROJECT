@@ -13,7 +13,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] Slider healthBar;
 
     int currentHealth;
-    bool isTakingDamage = false;
+    bool isTakingDamage = false;    
 
     void Start()
     {
