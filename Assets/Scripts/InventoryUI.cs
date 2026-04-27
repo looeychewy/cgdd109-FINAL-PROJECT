@@ -7,7 +7,6 @@ public class InventoryUI : MonoBehaviour
 {
     [SerializeField] Transform slotContainer;
     [SerializeField] GameObject slotPrefab;
-    [SerializeField] KeyCode toggleKey = KeyCode.Tab;
 
     GameObject panel;
     List<GameObject> spawnedSlots = new List<GameObject>();
@@ -28,10 +27,10 @@ public class InventoryUI : MonoBehaviour
         {
             GameObject slot = Instantiate(slotPrefab, slotContainer);
 
-            // icon
+
             slot.GetComponent<Image>().sprite = item.icon;
 
-            // label underneath
+
             TextMeshProUGUI label = slot.GetComponentInChildren<TextMeshProUGUI>();
             if (label != null)
                 label.text = item.itemName;

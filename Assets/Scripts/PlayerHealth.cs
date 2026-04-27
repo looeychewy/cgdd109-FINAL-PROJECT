@@ -60,12 +60,11 @@ public class PlayerHealth : MonoBehaviour
             healthBar.value = currentHealth;
 
         if (currentHealth <= 0)
-            Die();
+            PlayerDie();
     }
 
-    void Die()
+    void PlayerDie()
     {
-        Debug.Log("Player died.");
-        // hook up your death/respawn logic here
+        DeathScreen.instance.ShowDeathScreen();
     }
 }

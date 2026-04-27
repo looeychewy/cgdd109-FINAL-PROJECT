@@ -5,7 +5,7 @@ using TMPro;
 public class CraftingUI : MonoBehaviour
 {
     [Header("Recipe - items needed to craft the key")]
-    [SerializeField] string[] requiredItems; // fill in Inspector e.g. "Iron", "Wood"
+    [SerializeField] string[] requiredItems; 
 
     [Header("Slots")]
     [SerializeField] Image[] ingredientSlots;   // UI Image slots showing placed items
@@ -28,7 +28,7 @@ public class CraftingUI : MonoBehaviour
         CheckAutoFill();
     }
 
-    // Auto-fills slots with items the player already has
+    // Autofills slots with items player already has
     void CheckAutoFill()
     {
         for (int i = 0; i < requiredItems.Length; i++)
@@ -72,7 +72,7 @@ public class CraftingUI : MonoBehaviour
     foreach (string itemName in requiredItems)
         PlayerInventory.instance.RemoveItem(itemName);
 
-    // Add key to inventory
+    // Add key to inventory\
     PlayerInventory.instance.AddItem(keyItem);
 
     // Show key in output slot
