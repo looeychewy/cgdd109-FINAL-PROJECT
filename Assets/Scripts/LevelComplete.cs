@@ -6,6 +6,7 @@ public class LevelComplete : MonoBehaviour
 {
     [SerializeField] GameObject levelCompletePanel;
     [SerializeField] ConfettiEffect confetti;
+    [SerializeField] string nextLevelName; // Set this in the Inspector per scene
 
     public static LevelComplete instance;
 
@@ -20,7 +21,7 @@ public class LevelComplete : MonoBehaviour
         foreach (AudioSource audio in FindObjectsOfType<AudioSource>())
             audio.Stop();
 
-        AudioListener.pause = true;    // pauses ALL audio in the scene
+        AudioListener.pause = true;
 
         if (confetti != null) confetti.Play();
         levelCompletePanel.SetActive(true);
@@ -45,5 +46,12 @@ public class LevelComplete : MonoBehaviour
         AudioListener.pause = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void OnNextLevelPressed()
+    {
+        AudioListener.pause = false;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(nextLevelName);
     }
 }
